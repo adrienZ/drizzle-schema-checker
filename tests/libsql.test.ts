@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import libSql from "db0/connectors/libsql/node";
 import { createDatabase } from "db0";
-import { checkDbAndTables } from "../../src/runtime/database";
+import { checkDbAndTables } from "../src/index";
 
 function testFunction() {
 	return checkDbAndTables(db, "libsql", {

@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "pnpm vitest run",
+    "test:bun": "bun test ./tests/bun-sqlite.test.bun",
 		"test:ci": "pnpm test -- --coverage --reporter=default --reporter=junit && pnpm test:bun",
 		"lint": "biome lint",
 		"format": "biome format --write"

@@ -4,7 +4,7 @@ import { createDatabase } from "db0";
 import {
 	checkDatabaseValidity,
 	checkDbAndTables,
-} from "../../src/runtime/database";
+} from "../src/index";
 
 describe("checkDatabaseValidity", () => {
 	it("should throw an error when no arguments are provided", () => {

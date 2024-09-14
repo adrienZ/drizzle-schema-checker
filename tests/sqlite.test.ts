@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import sqlite from "db0/connectors/better-sqlite3";
 import { createDatabase } from "db0";
-import { checkDbAndTables } from "../../src/runtime/database";
+import { checkDbAndTables } from "../src/index";
 
 function testFunction() {
 	return checkDbAndTables(db, "sqlite", {
