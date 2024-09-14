@@ -1,6 +1,6 @@
 # drizzle-schema-checker
 
-A simple schema checker for Drizzle.js databases using Zod validation.
+Checks if a Drizzle schema is also valid in a database
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]

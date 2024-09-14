@@ -1,7 +1,7 @@
 {
 	"name": "drizzle-schema-checker",
 	"version": "1.0.0",
-	"description": "",
+	"description": "Checks if a Drizzle schema is also valid in a database",
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
