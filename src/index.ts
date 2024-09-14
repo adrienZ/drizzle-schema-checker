@@ -20,9 +20,7 @@ const DatabaseSchema = z.object({
 	sql: z.function(),
 });
 
-export function checkDatabaseValidity(
-	db: unknown,
-): Database {
+export function checkDatabaseValidity(db: unknown): Database {
 	if (!db) {
 		throw new Error("No database to check, please provide one");
 	}
@@ -45,20 +43,23 @@ export function createChecker(
 	checkDatabaseValidity(database);
 
 	if (CONNECTOR_NAME.includes(connectorType as supportedConnectors) === false) {
-			throw new Error(
-				`Invalid enum value. Expected ${CONNECTOR_NAME.map((name) => `'${name}'`).join(" | ")}, received '${connectorType}'`,
-			);
+		throw new Error(
+			`Invalid enum value. Expected ${CONNECTOR_NAME.map((name) => `'${name}'`).join(" | ")}, received '${connectorType}'`,
+		);
 	}
 
-	const tableChecker: SqliteTableChecker =  new SqliteTableChecker(database);
+	const tableChecker: SqliteTableChecker = new SqliteTableChecker(database);
 
 	const checkTableWithSchema = async (tableName: string, schema: unknown) => {
 		// TODO: remove casting when supporting non-sqlite connectors
-		const isTableOk = await tableChecker.checkTable(tableName, schema as SQLiteTable);
+		const isTableOk = await tableChecker.checkTable(
+			tableName,
+			schema as SQLiteTable,
+		);
 		consola.success(`Table "${tableName}" exists and has a valid schema`);
 
 		return isTableOk;
-	}
+	};
 
-	return { checkTableWithSchema }
+	return { checkTableWithSchema };
 }

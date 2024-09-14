@@ -13,9 +13,7 @@ describe("checkDatabaseValidity", () => {
 
 	it("should throw an error when an invalid database is provided", () => {
 		const invalidDatabase = {};
-		expect(() =>
-			checkDatabaseValidity(invalidDatabase),
-		).toThrowError(
+		expect(() => checkDatabaseValidity(invalidDatabase)).toThrowError(
 			"The provided database is not a valid db0 database, see https://github.com/unjs/db0",
 		);
 	});
@@ -30,7 +28,7 @@ describe("checkAndCreateDb", () => {
 		);
 		expect(
 			// @ts-expect-error testing unsupported connector
-			() => createChecker(db, "notsupported")
+			() => createChecker(db, "notsupported"),
 		).toThrowError(
 			"Invalid enum value. Expected 'sqlite' | 'libsql' | 'bun-sqlite', received 'notsupported'",
 		);
