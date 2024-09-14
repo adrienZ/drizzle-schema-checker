@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "pnpm vitest run",
-    "test:ci": "pnpm test -- --coverage --reporter=default --reporter=junit && pnpm test:bun",
+		"test:ci": "pnpm test -- --coverage --reporter=default --reporter=junit && pnpm test:bun",
 		"lint": "biome lint",
 		"format": "biome format --write"
 	},
@@ -14,6 +14,7 @@
 	"license": "ISC",
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.0",
+		"@vitest/coverage-v8": "^2.1.1",
 		"db0": "^0.1.4",
 		"tsup": "^8.2.4",
 		"vitest": "^2.1.1"
