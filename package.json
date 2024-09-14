@@ -1,6 +1,6 @@
 {
 	"name": "drizzle-schema-checker",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Checks if a Drizzle schema is also valid in a database",
 	"type": "module",
 	"repository": "github:adrienZ/drizzle-schema-checker",
@@ -13,8 +13,9 @@
 	},
 	"main": "./dist/index.cjs",
 	"types": "./dist/index.d.ts",
-	"files": ["dist"],
-
+	"files": [
+		"dist"
+	],
 	"scripts": {
 		"build": "tsup src/index.ts --format cjs,esm --dts --clean",
 		"dev": "vitest",
@@ -27,7 +28,12 @@
 		"format": "biome format --write",
 		"release": "npm run test:types && npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags"
 	},
-	"keywords": ["drizzle", "database", "validation", "schema"],
+	"keywords": [
+		"drizzle",
+		"database",
+		"validation",
+		"schema"
+	],
 	"author": "Adrien Zaganelli",
 	"license": "MIT",
 	"devDependencies": {
