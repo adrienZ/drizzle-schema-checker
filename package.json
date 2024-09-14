@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "pnpm run vitest",
+		"test": "pnpm vitest run",
     "test:ci": "pnpm test -- --coverage --reporter=default --reporter=junit && pnpm test:bun",
 		"lint": "biome lint",
 		"format": "biome format --write"
