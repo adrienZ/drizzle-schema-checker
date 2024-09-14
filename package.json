@@ -9,14 +9,14 @@
 		".": {
 			"require": "./dist/index.js",
 			"import": "./dist/index.mjs",
-        "types": "./dist/index.d.ts"
+			"types": "./dist/index.d.ts"
 		}
 	},
 	"scripts": {
 		"build": "tsup src/index.ts --format cjs,esm --dts --clean",
-		"watch": "npm run build -- --watch src",
-		"prepublishOnly": "npm run build",
-		"test": "pnpm vitest run",
+		"dev": "vitest",
+		"prepublishOnly": "pnpm run build",
+		"test": "vitest run",
 		"test:types": "tsc --noEmit",
 		"test:bun": "bun test ./tests/bun-sqlite.test.bun",
 		"test:ci": "pnpm test -- --coverage --reporter=default --reporter=junit --outputFile=./junit.xml && pnpm test:bun",
