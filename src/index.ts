@@ -2,7 +2,7 @@ import type { ConnectorName, Database } from "db0";
 import z from "zod";
 import consola from "consola";
 import { SqliteTableChecker } from "./lib/sqlite-table-checker";
-import { SQLiteTable } from "drizzle-orm/sqlite-core";
+import type { SQLiteTable } from "drizzle-orm/sqlite-core";
 
 export type supportedConnectors = Extract<
 	ConnectorName,
