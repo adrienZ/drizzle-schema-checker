@@ -42,30 +42,43 @@ export const userTable = sqliteTable("users", {
 Then, use the `checkDatabaseValidity` function to validate your database:
 
 ```typescript
-import { checkDatabaseValidity } from 'drizzle-schema-checker';
+// your db stuff
+import { createChecker } from 'drizzle-schema-checker';
 import sqlite from "db0/connectors/better-sqlite3";
 import { createDatabase } from "db0";
 import { userTable } from './schema';
 
+// drizzle
+import {
+	sqliteTable,
+	text,
+	primaryKey,
+} from "drizzle-orm/sqlite-core";
+
 const db = createDatabase(sqlite());
-const tableNames = {
-  users: 'users',
-  sessions: 'sessions',
-};
+const dbChecker = createChecker(db, "sqlite");
+
+export const usersSchema =
+	sqliteTable("slip_users", {
+		id: text("id").primaryKey().notNull(),
+		password: text("password"),
+		email: text("email").notNull().unique(),
+	});
+
 
 try {
-  const validatedDb = checkDatabaseValidity(db, tableNames);
-  console.log('Database is valid:', validatedDb);
+  const validatedTable = await checker.checkTable("user", userTableSchema);
+  console.log('table user is valid in db');
 } catch (error) {
-  console.error('Invalid database:', error.message);
+  console.error(error.message);
 }
 ```
 
 
 ## Roadmap
 
-- [ ] Remove any [slip](https://github.com/adrienZ/slip) code
-  - [ ] tableNames
+- [x] Remove any [slip](https://github.com/adrienZ/slip) code
+  - [x] tableNames
 - [x] [SQLite](https://db0.unjs.io/connectors/sqlite) support
 - [x] [Bun SQlite](https://db0.unjs.io/connectors/bun) support
 - [x] [LibSQL](https://db0.unjs.io/connectors/libsql) support
