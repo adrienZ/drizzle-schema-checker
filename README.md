@@ -48,26 +48,11 @@ import sqlite from "db0/connectors/better-sqlite3";
 import { createDatabase } from "db0";
 import { userTable } from './schema';
 
-// drizzle
-import {
-	sqliteTable,
-	text,
-	primaryKey,
-} from "drizzle-orm/sqlite-core";
-
 const db = createDatabase(sqlite());
 const dbChecker = createChecker(db, "sqlite");
 
-export const usersSchema =
-	sqliteTable("slip_users", {
-		id: text("id").primaryKey().notNull(),
-		password: text("password"),
-		email: text("email").notNull().unique(),
-	});
-
-
 try {
-  const validatedTable = await checker.checkTable("user", userTableSchema);
+  const validatedTable = await checker.checkTable("user", userTable);
   console.log('table user is valid in db');
 } catch (error) {
   console.error(error.message);
