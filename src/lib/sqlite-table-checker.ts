@@ -1,18 +1,14 @@
 import {
-	type PrimaryKey,
 	getTableConfig,
+	type PrimaryKey,
 	type SQLiteColumn,
 	type ForeignKey,
+	type SQLiteTable,
 } from "drizzle-orm/sqlite-core";
 import { getTableName } from "drizzle-orm";
 import type { Database } from "db0";
 import { z } from "zod";
 import { TableChecker } from "./table-checker";
-import {
-	getUsersTableSchema,
-	getOAuthAccountsTableSchema,
-	getSessionsTableSchema,
-} from "./schema";
 
 // #region HELPERS
 const sqliteTableInfoRowSchema = z.object({
@@ -190,39 +186,11 @@ async function validateDabaseWithSchema(
 }
 
 export class SqliteTableChecker extends TableChecker {
-	override async checkUserTable() {
+	override async checkTable(tableName: string, schema: SQLiteTable) {
 		const error = await validateDabaseWithSchema(
 			this.dbClient,
-			this.tableNames.users,
-			getTableConfig(getUsersTableSchema(this.tableNames)),
-		);
-
-		if (error) {
-			throw new Error(error);
-		}
-
-		return true;
-	}
-
-	override async checkSessionTable() {
-		const error = await validateDabaseWithSchema(
-			this.dbClient,
-			this.tableNames.sessions,
-			getTableConfig(getSessionsTableSchema(this.tableNames)),
-		);
-
-		if (error) {
-			throw new Error(error);
-		}
-
-		return true;
-	}
-
-	override async checkOauthAccountTable() {
-		const error = await validateDabaseWithSchema(
-			this.dbClient,
-			this.tableNames.oauthAccounts,
-			getTableConfig(getOAuthAccountsTableSchema(this.tableNames)),
+			tableName,
+			getTableConfig(schema),
 		);
 
 		if (error) {

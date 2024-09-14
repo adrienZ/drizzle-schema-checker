@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import sqlite from "db0/connectors/better-sqlite3";
 import { createDatabase } from "db0";
-import { checkDatabaseValidity, checkDbAndTables } from "../src/index";
+import { checkDatabaseValidity, createChecker } from "../src/index";
 
 describe("checkDatabaseValidity", () => {
 	it("should throw an error when no arguments are provided", () => {
@@ -14,49 +14,9 @@ describe("checkDatabaseValidity", () => {
 	it("should throw an error when an invalid database is provided", () => {
 		const invalidDatabase = {};
 		expect(() =>
-			checkDatabaseValidity(invalidDatabase, {
-				users: "slip_users",
-				sessions: "slip_sessions",
-			}),
+			checkDatabaseValidity(invalidDatabase),
 		).toThrowError(
 			"The provided database is not a valid db0 database, see https://github.com/unjs/db0",
-		);
-	});
-
-	it("should throw an error when tableNames are missing", () => {
-		// @ts-expect-error testing no table names
-		expect(() => checkDatabaseValidity({})).toThrowError(
-			"No tableNames provided for SlipAuth: { users: string, sessions: string, oauthAccounts: string }",
-		);
-	});
-
-	it("should throw an error when tableNames are missing users table", () => {
-		expect(() =>
-			checkDatabaseValidity({}, { sessions: "slip_sessions" }),
-		).toThrowError(
-			"tableNames provided for SlipAuth are incorrect, { users: string, sessions: string }",
-		);
-	});
-
-	it("should throw an error when tableNames are missing sessions table", () => {
-		expect(() =>
-			checkDatabaseValidity({}, { users: "users_sessions" }),
-		).toThrowError(
-			"tableNames provided for SlipAuth are incorrect, { users: string, sessions: string }",
-		);
-	});
-
-	it("should throw an error when tableNames are from an incorrect type", () => {
-		expect(() => checkDatabaseValidity({}, new Date())).toThrowError(
-			"tableNames provided for SlipAuth are incorrect, { users: string, sessions: string }",
-		);
-	});
-
-	it("should throw an error when tableNames have an empty value for a valid key", () => {
-		expect(() =>
-			checkDatabaseValidity({}, { users: "users_sessions", sessions: "" }),
-		).toThrowError(
-			"tableNames provided for SlipAuth are incorrect, { users: string, sessions: string }",
 		);
 	});
 });
@@ -68,13 +28,10 @@ describe("checkAndCreateDb", () => {
 				name: "database.test",
 			}),
 		);
-		await expect(
+		expect(
 			// @ts-expect-error testing unsupported connector
-			checkDbAndTables(db, "notsupported", {
-				users: "slip_users",
-				sessions: "slip_sessions",
-			}),
-		).rejects.toThrowError(
+			() => createChecker(db, "notsupported")
+		).toThrowError(
 			"Invalid enum value. Expected 'sqlite' | 'libsql' | 'bun-sqlite', received 'notsupported'",
 		);
 	});
