@@ -16,7 +16,7 @@
 	"scripts": {
 		"build": "tsup src/index.ts --format cjs,esm --dts --clean",
 		"dev": "vitest",
-		"prepublishOnly": "pnpm run build",
+		"prepack": "pnpm run build",
 		"test": "vitest run",
 		"test:types": "tsc --noEmit",
 		"test:bun": "bun test ./tests/bun-sqlite.test.bun",
