@@ -6,7 +6,7 @@ on:
       - '**'  # Matches every branch
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   install-lint-and-test:
