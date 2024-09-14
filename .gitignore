@@ -17,8 +17,8 @@ jspm_packages/
 
 
 
-.data/*
-!.data/.gitkeep
+# Nuxt dev/build outputs
+.data
 
 # Node dependencies
 node_modules
