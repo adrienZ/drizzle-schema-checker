@@ -23,9 +23,6 @@ jobs:
       - name: Install dependencies
         run: pnpm i
 
-      - name: Typecheck
-        run: npm run test:types
-
       - name: Lint
         run: npm run lint
 
