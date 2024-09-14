@@ -2,6 +2,7 @@ import type { ConnectorName, Database } from "db0";
 import z from "zod";
 import consola from "consola";
 import { SqliteTableChecker } from "./lib/sqlite-table-checker";
+import { SQLiteTable } from "drizzle-orm/sqlite-core";
 
 export type supportedConnectors = Extract<
 	ConnectorName,
@@ -52,7 +53,8 @@ export function createChecker(
 	const tableChecker: SqliteTableChecker =  new SqliteTableChecker(database);
 
 	const checkTableWithSchema = async (tableName: string, schema: unknown) => {
-		const isTableOk = await tableChecker.checkTable(tableName, schema);
+		// TODO: remove casting when supporting non-sqlite connectors
+		const isTableOk = await tableChecker.checkTable(tableName, schema as SQLiteTable);
 		consola.success(`Table "${tableName}" exists and has a valid schema`);
 
 		return isTableOk;
