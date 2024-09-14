@@ -1,17 +1,17 @@
 # drizzle-schema-checker
 
-Checks if a Drizzle schema is also valid in a database
+Checks if a Drizzle schema is also valid in a database.
+
+uses [unjs/db0](https://github.com/unjs/db0) to connect your database.
+
+---
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
 [![Codecov][codecov-src]][codecov-href]
 
-## Features
-
-- Validates table names and database structure against predefined schemas.
-- Throws helpful error messages when validation fails.
-- Supports both `better-sqlite3` and `@libsql/client` engines.
+---
 
 ## Installation
 
@@ -27,20 +27,15 @@ First, create your schemas using Zod:
 
 ```typescript
 // schema.ts
-import { z } from 'zod';
+import { sqliteTable, text, integer, primaryKey } from "drizzle-orm/sqlite-core";
+import { sql } from "drizzle-orm";
 
-export const TableNamesSchema = z.object({
-  users: z.string(),
-  sessions: z.string(),
-});
-
-export type DatabaseSchemaType = {
-  tables: Record<string, unknown>;
-  // add other database properties here...
-};
-
-export const DatabaseSchema = z.object({
-  tables: z.record(z.unknown()),
+export const userTable = sqliteTable("users", {
+  id: text("id").primaryKey().notNull(),
+  password: text("password"),
+  email: text("email").notNull().unique(),
+  created_at: integer("created_at", { mode: "timestamp" }).notNull().default(sql`CURRENT_TIMESTAMP`),
+  updated_at: integer("updated_at", { mode: "timestamp" }).notNull().default(sql`CURRENT_TIMESTAMP`),
 });
 ```
 
@@ -48,9 +43,11 @@ Then, use the `checkDatabaseValidity` function to validate your database:
 
 ```typescript
 import { checkDatabaseValidity } from 'drizzle-schema-checker';
-import { TableNamesSchema } from './schema.ts';
+import sqlite from "db0/connectors/better-sqlite3";
+import { createDatabase } from "db0";
+import { userTable } from './schema';
 
-const db = /* your drizzle.js database */;
+const db = createDatabase(sqlite());
 const tableNames = {
   users: 'users',
   sessions: 'sessions',
@@ -64,6 +61,18 @@ try {
 }
 ```
 
+
+## Roadmap
+
+- [ ] Remove any [slip](https://github.com/adrienZ/slip) code
+  - [ ] tableNames
+- [x] [SQLite](https://db0.unjs.io/connectors/sqlite) support
+- [x] [Bun SQlite](https://db0.unjs.io/connectors/bun) support
+- [x] [LibSQL](https://db0.unjs.io/connectors/libsql) support
+- [ ] [PostgreSQL](https://db0.unjs.io/connectors/postgresql) support
+- [ ] [Cloudflare D1](https://db0.unjs.io/connectors/cloudflare) support
+- [ ] [MySQL](https://db0.unjs.io/connectors/mysql) support
+
 ## Development
 
 ### Prerequisites
@@ -75,7 +84,7 @@ try {
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/drizzle-schema-checker.git
+   git clone https://github.com/adrienZ/drizzle-schema-checker.git
    cd drizzle-schema-checker
    ```
 
@@ -110,13 +119,7 @@ pnpm test:ci
 
 ## License
 
-ISC © [Your Name]
-
----
-
-_This README was generated with ❤️ by your name_
-
-*For more information on how to contribute, please refer to the [contributing guidelines](CONTRIBUTING.md).*
+MIT
 
 
 <!-- Badges -->
