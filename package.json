@@ -5,6 +5,7 @@
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
+	"repository": "github:adrienZ/drizzle-schema-checker",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
@@ -24,8 +25,8 @@
 		"format": "biome format --write",
 		"release": "npm run test:types && npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags"
 	},
-	"keywords": [],
-	"author": "",
+	"keywords": ["drizzle", "database", "validation", "schema"],
+	"author": "Adrien Zaganelli",
 	"license": "MIT",
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.0",
