@@ -19,13 +19,13 @@
 		"test": "pnpm vitest run",
 		"test:types": "tsc --noEmit",
 		"test:bun": "bun test ./tests/bun-sqlite.test.bun",
-		"test:ci": "pnpm test -- --coverage --reporter=default --reporter=junit && pnpm test:bun",
+		"test:ci": "pnpm test -- --coverage --reporter=default --reporter=junit --outputFile=./junit.xml && pnpm test:bun",
 		"lint": "biome lint",
 		"format": "biome format --write"
 	},
 	"keywords": [],
 	"author": "",
-	"license": "ISC",
+	"license": "MIT",
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.0",
 		"@vitest/coverage-v8": "^2.1.1",

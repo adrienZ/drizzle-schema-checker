@@ -2,6 +2,12 @@
 
 A simple schema checker for Drizzle.js databases using Zod validation.
 
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![License][license-src]][license-href]
+[![Nuxt][nuxt-src]][nuxt-href]
+[![Codecov][codecov-src]][codecov-href]
+
 ## Features
 
 - Validates table names and database structure against predefined schemas.
@@ -112,3 +118,18 @@ ISC © [Your Name]
 _This README was generated with ❤️ by your name_
 
 *For more information on how to contribute, please refer to the [contributing guidelines](CONTRIBUTING.md).*
+
+
+<!-- Badges -->
+[npm-version-src]: https://img.shields.io/npm/v/drizzle-schema-checker/latest.svg?style=flat&colorA=020420&colorB=00DC82
+[npm-version-href]: https://npmjs.com/package/drizzle-schema-checker
+
+[npm-downloads-src]: https://img.shields.io/npm/dm/drizzle-schema-checker.svg?style=flat&colorA=020420&colorB=00DC82
+[npm-downloads-href]: https://npmjs.com/package/drizzle-schema-checker
+
+[license-src]: https://img.shields.io/npm/l/drizzle-schema-checker.svg?style=flat&colorA=020420&colorB=00DC82
+[license-href]: https://npmjs.com/package/drizzle-schema-checker
+
+
+[codecov-src]: https://codecov.io/gh/adrienZ/drizzle-schema-checker/graph/badge.svg?token=SPS4DURB2A
+[codecov-href]: https://codecov.io/gh/adrienZ/drizzle-schema-checker
