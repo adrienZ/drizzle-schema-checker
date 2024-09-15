@@ -24,6 +24,7 @@ const sqliteDrizzleColumnTypeMapping = {
 	SQLiteText: "TEXT",
 	SQLiteInteger: "INTEGER",
 	SQLiteTimestamp: "TIMESTAMP",
+	SQLiteBoolean: "BOOLEAN",
 };
 function getSQLiteColumType(drizzleColumnType: string) {
 	return (

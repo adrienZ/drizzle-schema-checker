@@ -19,6 +19,7 @@ export const usersSchema = sqliteTable("slip_users", {
 	id: text("id").primaryKey().notNull(),
 	password: text("password"),
 	email: text("email").notNull().unique(),
+	email_verified: integer("email_verified", { mode: "boolean" }).notNull().default(sql`0`),
 	...datesColumns,
 });
 
