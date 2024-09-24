@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.2.0
+
+[compare changes](https://github.com/adrienZ/drizzle-schema-checker/compare/v1.1.0...v1.2.0)
+
+### 🚀 Enhancements
+
+- D1 ([e44bf0c](https://github.com/adrienZ/drizzle-schema-checker/commit/e44bf0c))
+
+### ❤️ Contributors
+
+- Adrien Zaganelli <adrienzaganelli@gmail.com>
+
 ## v1.1.0
 
 [compare changes](https://github.com/adrienZ/drizzle-schema-checker/compare/v1.0.3...v1.1.0)
