@@ -23,7 +23,7 @@
 		"test": "vitest run",
 		"test:types": "tsc --noEmit",
 		"test:bun": "bun test ./tests/bun-sqlite.test.bun",
-		"test:d1": "vitest --root ./tests/cloudflare/ run",
+		"test:d1": "vitest --root ./tests/cloudflare/",
 		"test:ci": "pnpm test -- --coverage --reporter=default --reporter=junit --outputFile=./junit.xml && pnpm test:bun && test:d1",
 		"lint": "biome lint",
 		"format": "biome format --write",
