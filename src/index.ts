@@ -3,15 +3,17 @@ import z from "zod";
 import consola from "consola";
 import { SqliteTableChecker } from "./lib/sqlite-table-checker";
 import type { SQLiteTable } from "drizzle-orm/sqlite-core";
+import { D1SqliteTableChecker } from "./lib/d1-sqlite-table-checker";
 
 export type supportedConnectors = Extract<
 	ConnectorName,
-	"sqlite" | "libsql" | "bun-sqlite"
+	"sqlite" | "libsql" | "bun-sqlite" | "cloudflare-d1"
 >;
 const CONNECTOR_NAME = [
 	"sqlite",
 	"libsql",
 	"bun-sqlite",
+	"cloudflare-d1",
 ] as const satisfies supportedConnectors[];
 
 const DatabaseSchema = z.object({
@@ -48,7 +50,16 @@ export function createChecker(
 		);
 	}
 
-	const tableChecker: SqliteTableChecker = new SqliteTableChecker(database);
+	let tableChecker: SqliteTableChecker;
+	
+	switch(connectorType) {
+		case "cloudflare-d1":
+			tableChecker = new D1SqliteTableChecker(database);
+			break;
+		default:
+			tableChecker = new SqliteTableChecker(database);
+			break
+	}
 
 	const checkTableWithSchema = async (tableName: string, schema: unknown) => {
 		// TODO: remove casting when supporting non-sqlite connectors

@@ -156,20 +156,19 @@ describe("sqlite connector", () => {
 				);
 			});
 
-			it("should throw an error when users table does not have a default value of O at email_verified field", async () => {
+			it("should throw an error when users table does not have a default value of false at email_verified field", async () => {
 				await db.sql`CREATE TABLE IF NOT EXISTS slip_users ("id" TEXT NOT NULL PRIMARY KEY, "password" TEXT, "email" TEXT NOT NULL UNIQUE, "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, "updated_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, "email_verified" BOOLEAN NOT NULL)`;
 				await expect(
 					testFunction().checkTableWithSchema("slip_users", usersSchema),
 				).rejects.toThrowError(
-					'slip_users table must contain a column with name "email_verified" with default value of 0',
+					'slip_users table must contain a column with name "email_verified" with default value of FALSE',
 				);
 			});
-
 		});
 
 		describe("created_at field", () => {
 			it("should throw an error when users table does not have an created_at field", async () => {
-				await db.sql`CREATE TABLE IF NOT EXISTS slip_users ("id" TEXT NOT NULL PRIMARY KEY, "email" TEXT NOT NULL UNIQUE, "email_verified" BOOLEAN NOT NULL DEFAULT 0, "password" TEXT)`;
+				await db.sql`CREATE TABLE IF NOT EXISTS slip_users ("id" TEXT NOT NULL PRIMARY KEY, "email" TEXT NOT NULL UNIQUE, "email_verified" BOOLEAN NOT NULL DEFAULT FALSE, "password" TEXT)`;
 				await expect(
 					testFunction().checkTableWithSchema("slip_users", usersSchema),
 				).rejects.toThrowError(
@@ -178,7 +177,7 @@ describe("sqlite connector", () => {
 			});
 
 			it("should throw an error when users table does not have an created_at field with type of text", async () => {
-				await db.sql`CREATE TABLE IF NOT EXISTS slip_users ("id" TEXT NOT NULL PRIMARY KEY, "email" TEXT NOT NULL UNIQUE, "email_verified" BOOLEAN NOT NULL DEFAULT 0, "password" TEXT, "created_at" INTEGER)`;
+				await db.sql`CREATE TABLE IF NOT EXISTS slip_users ("id" TEXT NOT NULL PRIMARY KEY, "email" TEXT NOT NULL UNIQUE, "email_verified" BOOLEAN NOT NULL DEFAULT FALSE, "password" TEXT, "created_at" INTEGER)`;
 				await expect(
 					testFunction().checkTableWithSchema("slip_users", usersSchema),
 				).rejects.toThrowError(
@@ -187,7 +186,7 @@ describe("sqlite connector", () => {
 			});
 
 			it("should throw an error when users table does not have an not nullable created_at field", async () => {
-				await db.sql`CREATE TABLE IF NOT EXISTS slip_users ("id" TEXT NOT NULL PRIMARY KEY, "email" TEXT NOT NULL UNIQUE, "email_verified" BOOLEAN NOT NULL DEFAULT 0, "password" TEXT, "created_at" TIMESTAMP)`;
+				await db.sql`CREATE TABLE IF NOT EXISTS slip_users ("id" TEXT NOT NULL PRIMARY KEY, "email" TEXT NOT NULL UNIQUE, "email_verified" BOOLEAN NOT NULL DEFAULT FALSE, "password" TEXT, "created_at" TIMESTAMP)`;
 				await expect(
 					testFunction().checkTableWithSchema("slip_users", usersSchema),
 				).rejects.toThrowError(
@@ -196,7 +195,7 @@ describe("sqlite connector", () => {
 			});
 
 			it("should throw an error when users table does not have a default value of CURRENT_TIMESTAMP at created_at field", async () => {
-				await db.sql`CREATE TABLE IF NOT EXISTS slip_users ("id" TEXT NOT NULL PRIMARY KEY, "email" TEXT NOT NULL UNIQUE, "email_verified" BOOLEAN NOT NULL DEFAULT 0, "password" TEXT, "created_at" TIMESTAMP NOT NULL)`;
+				await db.sql`CREATE TABLE IF NOT EXISTS slip_users ("id" TEXT NOT NULL PRIMARY KEY, "email" TEXT NOT NULL UNIQUE, "email_verified" BOOLEAN NOT NULL DEFAULT FALSE, "password" TEXT, "created_at" TIMESTAMP NOT NULL)`;
 				await expect(
 					testFunction().checkTableWithSchema("slip_users", usersSchema),
 				).rejects.toThrowError(
@@ -207,7 +206,7 @@ describe("sqlite connector", () => {
 
 		describe("updated_at field", () => {
 			it("should throw an error when users table does not have an updated_at field", async () => {
-				await db.sql`CREATE TABLE IF NOT EXISTS slip_users ("id" TEXT NOT NULL PRIMARY KEY, "email" TEXT NOT NULL UNIQUE, "email_verified" BOOLEAN NOT NULL DEFAULT 0, "password" TEXT, "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)`;
+				await db.sql`CREATE TABLE IF NOT EXISTS slip_users ("id" TEXT NOT NULL PRIMARY KEY, "email" TEXT NOT NULL UNIQUE, "email_verified" BOOLEAN NOT NULL DEFAULT FALSE, "password" TEXT, "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)`;
 				await expect(
 					testFunction().checkTableWithSchema("slip_users", usersSchema),
 				).rejects.toThrowError(
@@ -216,7 +215,7 @@ describe("sqlite connector", () => {
 			});
 
 			it("should throw an error when users table does not have an updated_at field with type of text", async () => {
-				await db.sql`CREATE TABLE IF NOT EXISTS slip_users ("id" TEXT NOT NULL PRIMARY KEY, "email" TEXT NOT NULL UNIQUE, "email_verified" BOOLEAN NOT NULL DEFAULT 0, "password" TEXT, "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, "updated_at" INTEGER)`;
+				await db.sql`CREATE TABLE IF NOT EXISTS slip_users ("id" TEXT NOT NULL PRIMARY KEY, "email" TEXT NOT NULL UNIQUE, "email_verified" BOOLEAN NOT NULL DEFAULT FALSE, "password" TEXT, "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, "updated_at" INTEGER)`;
 				await expect(
 					testFunction().checkTableWithSchema("slip_users", usersSchema),
 				).rejects.toThrowError(
@@ -225,7 +224,7 @@ describe("sqlite connector", () => {
 			});
 
 			it("should throw an error when users table does not have an not nullable updated_at field", async () => {
-				await db.sql`CREATE TABLE IF NOT EXISTS slip_users ("id" TEXT NOT NULL PRIMARY KEY, "email" TEXT NOT NULL UNIQUE, "email_verified" BOOLEAN NOT NULL DEFAULT 0, "password" TEXT, "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, "updated_at" TIMESTAMP)`;
+				await db.sql`CREATE TABLE IF NOT EXISTS slip_users ("id" TEXT NOT NULL PRIMARY KEY, "email" TEXT NOT NULL UNIQUE, "email_verified" BOOLEAN NOT NULL DEFAULT FALSE, "password" TEXT, "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, "updated_at" TIMESTAMP)`;
 				await expect(
 					testFunction().checkTableWithSchema("slip_users", usersSchema),
 				).rejects.toThrowError(
@@ -234,7 +233,7 @@ describe("sqlite connector", () => {
 			});
 
 			it("should throw an error when users table does not have a default value of CURRENT_TIMESTAMP at updated_at field", async () => {
-				await db.sql`CREATE TABLE IF NOT EXISTS slip_users ("id" TEXT NOT NULL PRIMARY KEY, "email" TEXT NOT NULL UNIQUE, "email_verified" BOOLEAN NOT NULL DEFAULT 0, "password" TEXT, "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, "updated_at" TIMESTAMP NOT NULL)`;
+				await db.sql`CREATE TABLE IF NOT EXISTS slip_users ("id" TEXT NOT NULL PRIMARY KEY, "email" TEXT NOT NULL UNIQUE, "email_verified" BOOLEAN NOT NULL DEFAULT FALSE, "password" TEXT, "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, "updated_at" TIMESTAMP NOT NULL)`;
 				await expect(
 					testFunction().checkTableWithSchema("slip_users", usersSchema),
 				).rejects.toThrowError(

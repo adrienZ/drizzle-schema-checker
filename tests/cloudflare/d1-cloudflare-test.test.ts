@@ -1,30 +1,41 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import libSql from "db0/connectors/libsql/node";
+import cloudflareD1 from "db0/connectors/cloudflare-d1";
 import { createDatabase } from "db0";
-import { createChecker } from "../src/index";
+import { createChecker } from "../../src/index";
 import {
 	oauthAccountsSchema,
 	sessionsSchema,
 	usersSchema,
-} from "./test-schemas";
+} from "../test-schemas";
+import { env as cloudflareEnv } from "cloudflare:test";
+
+if (!globalThis.__env__) {
+	globalThis.__env__ = {};
+}
+
+// Dynamically set the DB binding to globalThis.__env__
+if (!globalThis.__env__.DB) {
+	globalThis.__env__.DB = cloudflareEnv.DB; // env.DB is provided by Cloudflare Workers environment
+}
 
 function testFunction() {
-	return createChecker(db, "libsql");
+	return createChecker(db, "cloudflare-d1");
 }
 
 const db = createDatabase(
-	libSql({
-		url: "file:.data/libsql.test.db",
+	cloudflareD1({
+		bindingName: "DB",
 	}),
 );
 
 beforeEach(async () => {
-	await db.sql`DROP TABLE IF EXISTS slip_users`;
 	await db.sql`DROP TABLE IF EXISTS slip_sessions`;
 	await db.sql`DROP TABLE IF EXISTS slip_oauth_accounts`;
+	await db.sql`DROP TABLE IF EXISTS slip_users`;
 });
 
-describe("sqlite connector", () => {
+
+describe("D1 connector", () => {
 	describe("users table", () => {
 		describe("id field", () => {
 			it("should throw an error when users table does not exist in database", async () => {
