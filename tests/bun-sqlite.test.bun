@@ -17,7 +17,7 @@ beforeEach(async () => {
 	await db.sql`DROP TABLE IF EXISTS slip_oauth_accounts`;
 });
 
-describe("sqlite connector", () => {
+describe("bun-sqlite connector", () => {
 	describe("users table", () => {
 		describe("id field", () => {
 			it("should throw an error when users table does not exist in database", async () => {
@@ -149,15 +149,14 @@ describe("sqlite connector", () => {
 				);
 			});
 
-			it("should throw an error when users table does not have a default value of O at email_verified field", async () => {
+			it("should throw an error when users table does not have a default value of false at email_verified field", async () => {
 				await db.sql`CREATE TABLE IF NOT EXISTS slip_users ("id" TEXT NOT NULL PRIMARY KEY, "password" TEXT, "email" TEXT NOT NULL UNIQUE, "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, "updated_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, "email_verified" BOOLEAN NOT NULL)`;
 				await expect(
 					testFunction().checkTableWithSchema("slip_users", usersSchema),
 				).rejects.toThrowError(
-					'slip_users table must contain a column with name "email_verified" with default value of 0',
+					'slip_users table must contain a column with name "email_verified" with default value of FALSE',
 				);
 			});
-
 		});
 
 		describe("created_at field", () => {
