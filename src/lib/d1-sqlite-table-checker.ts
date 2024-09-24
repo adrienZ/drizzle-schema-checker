@@ -84,7 +84,7 @@ async function validateDabaseWithSchema(
 	
 
 	if (!success) {
-		throw new Error(error.errors[0].message);
+		throw new Error(error.errors[0]?.message);
 	}
 	
 	// Check if all columns from schema exist in SQLite table
@@ -120,8 +120,7 @@ async function validateDabaseWithSchema(
 			return `${tableName} table must contain a column "${columnFromSchema.name}" not nullable`;
 		}
 
-		const indexesInTableSQLite = await db.prepare(`SELECT name FROM sqlite_master WHERE type = 'index' AND tbl_name = '${tableName}';`).all();
-		
+		const indexesInTableSQLite = await db.prepare(`SELECT name FROM sqlite_master WHERE type = 'index' AND tbl_name = '${tableName}';`).all() as Array<{ name: string }>;
 
 		const uniqueIndexesSQLite = await Promise.all(
 			unwrapResults(indexesInTableSQLite)
@@ -176,7 +175,7 @@ async function validateDabaseWithSchema(
 			}
 
 			const targetTableName = getTableName(reference.foreignTable);
-			const targetColumnName = reference.foreignColumns[0].name;
+			const targetColumnName = reference.foreignColumns[0]?.name;
 			if (
 				fcorrespondingColumn.table !== targetTableName ||
 				fcorrespondingColumn.to !== targetColumnName

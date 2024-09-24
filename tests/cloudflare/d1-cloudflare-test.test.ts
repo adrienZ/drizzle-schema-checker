@@ -7,14 +7,20 @@ import {
 	sessionsSchema,
 	usersSchema,
 } from "../test-schemas";
+// @ts-expect-error missing types
 import { env as cloudflareEnv } from "cloudflare:test";
 
+
+// @ts-expect-error TODO: fix it
 if (!globalThis.__env__) {
+	// @ts-expect-error TODO: fix it
 	globalThis.__env__ = {};
 }
 
 // Dynamically set the DB binding to globalThis.__env__
+// @ts-expect-error TODO: fix it
 if (!globalThis.__env__.DB) {
+	// @ts-expect-error TODO: fix it
 	globalThis.__env__.DB = cloudflareEnv.DB; // env.DB is provided by Cloudflare Workers environment
 }
 
