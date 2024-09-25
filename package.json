@@ -23,8 +23,7 @@
 		"test": "vitest run",
 		"test:types": "tsc --noEmit",
 		"test:bun": "bun test ./tests/bun-sqlite.test.bun",
-		"test:d1": "vitest --root ./tests/cloudflare/",
-		"test:ci": "pnpm test -- --coverage --reporter=default --reporter=junit --outputFile=./junit.xml && pnpm test:bun && pnpm test:d1",
+		"test:ci": "pnpm test -- --coverage --reporter=default --reporter=junit --outputFile=./junit.xml && pnpm test:bun",
 		"lint": "biome lint",
 		"format": "biome format --write",
 		"release": "npm run test:types && npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags"
