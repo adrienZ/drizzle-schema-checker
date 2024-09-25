@@ -11,13 +11,10 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
-import type { ExportedHandler } from "@cloudflare/workers-types/experimental";
-type Env = Record<string, unknown>;
-
 export default {
 	// @ts-expect-error just a mock
 	async fetch(request, env, ctx): Promise<Response> {
 		console.log(env);
 		return new Response("Hello World!");
 	},
-} satisfies ExportedHandler<Env>;
+}
