@@ -68,7 +68,7 @@ try {
 - [x] [Bun SQlite](https://db0.unjs.io/connectors/bun) support
 - [x] [LibSQL](https://db0.unjs.io/connectors/libsql) support
 - [ ] [PostgreSQL](https://db0.unjs.io/connectors/postgresql) support
-- [ ] [Cloudflare D1](https://db0.unjs.io/connectors/cloudflare) support
+- [x] [Cloudflare D1](https://db0.unjs.io/connectors/cloudflare) support
 - [ ] [MySQL](https://db0.unjs.io/connectors/mysql) support
 
 ## Development
