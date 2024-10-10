@@ -4,16 +4,19 @@ import consola from "consola";
 import { SqliteTableChecker } from "./lib/sqlite-table-checker";
 import type { SQLiteTable } from "drizzle-orm/sqlite-core";
 import { D1SqliteTableChecker } from "./lib/d1-sqlite-table-checker";
+import { PostgresTableChecker } from "./lib/postgres-table-checker";
 
 export type supportedConnectors = Extract<
 	ConnectorName,
-	"sqlite" | "libsql" | "bun-sqlite" | "cloudflare-d1"
+	"sqlite" | "libsql" | "bun-sqlite" | "cloudflare-d1" | "pglite" | "postgresql"
 >;
 const CONNECTOR_NAME = [
 	"sqlite",
 	"libsql",
 	"bun-sqlite",
 	"cloudflare-d1",
+	"postgresql",
+	"pglite"
 ] as const satisfies supportedConnectors[];
 
 const DatabaseSchema = z.object({
@@ -50,11 +53,15 @@ export function createChecker(
 		);
 	}
 
-	let tableChecker: SqliteTableChecker;
-	
+	let tableChecker: SqliteTableChecker | D1SqliteTableChecker | PostgresTableChecker;
+
 	switch(connectorType) {
 		case "cloudflare-d1":
 			tableChecker = new D1SqliteTableChecker(database);
+			break;
+		case "pglite":
+		case "postgresql":
+			tableChecker = new PostgresTableChecker(database);
 			break;
 		default:
 			tableChecker = new SqliteTableChecker(database);

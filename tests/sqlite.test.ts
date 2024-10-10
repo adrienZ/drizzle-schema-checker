@@ -6,7 +6,7 @@ import {
 	oauthAccountsSchema,
 	sessionsSchema,
 	usersSchema,
-} from "./test-schemas";
+} from "./test-schemas-sqlite";
 
 function testFunction() {
 	return createChecker(db, "sqlite");

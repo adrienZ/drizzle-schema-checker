@@ -6,7 +6,7 @@ import {
 	oauthAccountsSchema,
 	sessionsSchema,
 	usersSchema,
-} from "../test-schemas";
+} from "../test-schemas-sqlite";
 // @ts-expect-error missing types
 import { env as cloudflareEnv } from "cloudflare:test";
 

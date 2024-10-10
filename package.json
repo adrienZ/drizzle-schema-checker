@@ -37,22 +37,23 @@
 	"author": "Adrien Zaganelli",
 	"license": "MIT",
 	"devDependencies": {
-		"@biomejs/biome": "^1.9.0",
-		"@cloudflare/vitest-pool-workers": "^0.5.8",
-		"@vitest/coverage-istanbul": "^2.1.1",
-		"db0": "^0.1.4",
-		"pkg-pr-new": "^0.0.24",
-		"tsup": "^8.2.4",
-		"typescript": "^5.6.2",
-		"vitest": "^2.1.1",
-		"wrangler": "^3.78.8"
+		"@biomejs/biome": "^1.9.3",
+		"@cloudflare/vitest-pool-workers": "^0.5.16",
+		"@electric-sql/pglite": "^0.2.11",
+		"@vitest/coverage-istanbul": "^2.1.2",
+		"db0": "^0.2.0",
+		"pkg-pr-new": "^0.0.29",
+		"tsup": "^8.3.0",
+		"typescript": "^5.6.3",
+		"vitest": "^2.1.2",
+		"wrangler": "^3.80.2"
 	},
 	"dependencies": {
-		"@libsql/client": "^0.11.0",
+		"@libsql/client": "^0.14.0",
 		"better-sqlite3": "^11.3.0",
-		"changelogen": "^0.5.5",
+		"changelogen": "^0.5.7",
 		"consola": "^3.2.3",
-		"drizzle-orm": "^0.33.0",
+		"drizzle-orm": "^0.34.1",
 		"zod": "^3.23.8"
 	},
 	"packageManager": "pnpm@9.10.0"
