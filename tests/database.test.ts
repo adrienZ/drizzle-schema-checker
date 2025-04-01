@@ -30,7 +30,7 @@ describe("checkAndCreateDb", () => {
 			// @ts-expect-error testing unsupported connector
 			() => createChecker(db, "notsupported"),
 		).toThrowError(
-			"Invalid enum value. Expected 'sqlite' | 'libsql' | 'bun-sqlite' | 'cloudflare-d1', received 'notsupported'",
+			"Invalid enum value. Expected 'sqlite' | 'libsql' | 'bun-sqlite' | 'cloudflare-d1' | 'node-sqlite' | 'sqlite3' | 'better-sqlite3', received 'notsupported'",
 		);
 	});
 });
