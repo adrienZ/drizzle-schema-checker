@@ -21,7 +21,7 @@ jobs:
       - name: Install Bun
         uses: oven-sh/setup-bun@v2
       - name: Install dependencies
-        run: npnpm i
+        run: pnpm i
 
       - name: Typecheck
         run: npm run test:types
