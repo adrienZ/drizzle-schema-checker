@@ -7,7 +7,7 @@ import { D1SqliteTableChecker } from "./lib/d1-sqlite-table-checker";
 
 export type supportedConnectors = Extract<
 	ConnectorName,
-	"sqlite" | "libsql" | "bun-sqlite" | "cloudflare-d1"
+	"sqlite" | "libsql" | "bun-sqlite" | "cloudflare-d1" | "better-sqlite3" | "node-sqlite" | "sqlite3"
 >;
 const CONNECTOR_NAME = [
 	"sqlite",
