@@ -14,6 +14,9 @@ const CONNECTOR_NAME = [
 	"libsql",
 	"bun-sqlite",
 	"cloudflare-d1",
+	"node-sqlite",
+	"sqlite3",
+	"better-sqlite3"
 ] as const satisfies supportedConnectors[];
 
 const DatabaseSchema = z.object({
