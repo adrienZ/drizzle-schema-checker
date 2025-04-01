@@ -39,10 +39,10 @@
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.0",
 		"@cloudflare/vitest-pool-workers": "^0.5.8",
-		"@vitest/coverage-istanbul": "^2.1.1",
+		"@vitest/coverage-istanbul": "^3.1.1",
 		"db0": "^0.3.1",
 		"pkg-pr-new": "^0.0.24",
-		"tsup": "^8.2.4",
+		"tsup": "^8.4.0",
 		"typescript": "^5.6.2",
 		"vitest": "^2.1.1",
 		"wrangler": "^3.78.8"
@@ -50,7 +50,7 @@
 	"dependencies": {
 		"@libsql/client": "^0.11.0",
 		"better-sqlite3": "^11.9.1",
-		"changelogen": "^0.5.5",
+		"changelogen": "^0.6.1",
 		"consola": "^3.2.3",
 		"drizzle-orm": "^0.41.0",
 		"zod": "^3.23.8"
