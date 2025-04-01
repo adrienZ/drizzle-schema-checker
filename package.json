@@ -38,17 +38,17 @@
 	"license": "MIT",
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@cloudflare/vitest-pool-workers": "^0.5.41",
+		"@cloudflare/vitest-pool-workers": "^0.8.8",
 		"@vitest/coverage-istanbul": "^3.1.1",
 		"db0": "^0.3.1",
 		"pkg-pr-new": "^0.0.42",
 		"tsup": "^8.4.0",
 		"typescript": "^5.8.2",
 		"vitest": "^2.1.9",
-		"wrangler": "^3.114.3"
+		"wrangler": "^4.6.0"
 	},
 	"dependencies": {
-		"@libsql/client": "^0.11.0",
+		"@libsql/client": "^0.15.2",
 		"better-sqlite3": "^11.9.1",
 		"changelogen": "^0.6.1",
 		"consola": "^3.4.2",
