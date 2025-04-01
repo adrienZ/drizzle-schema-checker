@@ -40,7 +40,7 @@
 		"@biomejs/biome": "^1.9.0",
 		"@cloudflare/vitest-pool-workers": "^0.5.8",
 		"@vitest/coverage-istanbul": "^2.1.1",
-		"db0": "^0.1.4",
+		"db0": "^0.3.1",
 		"pkg-pr-new": "^0.0.24",
 		"tsup": "^8.2.4",
 		"typescript": "^5.6.2",
@@ -49,11 +49,16 @@
 	},
 	"dependencies": {
 		"@libsql/client": "^0.11.0",
-		"better-sqlite3": "^11.3.0",
+		"better-sqlite3": "^11.9.1",
 		"changelogen": "^0.5.5",
 		"consola": "^3.2.3",
-		"drizzle-orm": "^0.33.0",
+		"drizzle-orm": "^0.41.0",
 		"zod": "^3.23.8"
 	},
-	"packageManager": "pnpm@9.10.0"
+	"packageManager": "pnpm@9.10.0",
+	"pnpm": {
+		"overrides": {
+			"tar-fs": ">=2.1.2"
+		}
+	}
 }
