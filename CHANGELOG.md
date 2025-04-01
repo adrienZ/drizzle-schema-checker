@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.2.1
+
+[compare changes](https://github.com/adrienZ/drizzle-schema-checker/compare/v1.2.0...v1.2.1)
+
+### 🩹 Fixes
+
+- **coverage:** Fix codegov coverage reporting of D1 tests ([1a5bfa5](https://github.com/adrienZ/drizzle-schema-checker/commit/1a5bfa5))
+
+### ❤️ Contributors
+
+- Adrien Zaganelli <adrienzaganelli@gmail.com>
+
 ## v1.2.0
 
 [compare changes](https://github.com/adrienZ/drizzle-schema-checker/compare/v1.1.0...v1.2.0)
