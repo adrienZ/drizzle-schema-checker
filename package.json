@@ -22,7 +22,7 @@
 		"prepack": "pnpm run build",
 		"test": "vitest run",
 		"test:types": "tsc --noEmit",
-		"test:bun": "bun test ./tests/bun-sqlite.test.ts",
+		"test:bun": "bun test ./tests/bun-sqlite.test.bun",
 		"test:ci": "pnpm test -- --coverage --coverage.provider istanbul --reporter=default --reporter=junit --outputFile=./junit.xml && pnpm test:bun",
 		"lint": "biome lint",
 		"format": "biome format --write",
@@ -38,7 +38,7 @@
 	"license": "MIT",
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@cloudflare/vitest-pool-workers": "^0.8.8",
+		"@cloudflare/vitest-pool-workers": "^0.8.71",
 		"@vitest/coverage-istanbul": "^3.1.1",
 		"db0": "^0.3.1",
 		"pkg-pr-new": "^0.0.42",
