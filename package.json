@@ -22,7 +22,7 @@
 		"prepack": "pnpm run build",
 		"test": "vitest run",
 		"test:types": "tsc --noEmit",
-		"test:bun": "bun test ./tests/bun-sqlite.test.bun",
+		"test:bun": "bun test ./tests/bun-sqlite.test.ts",
 		"test:ci": "pnpm test -- --coverage --coverage.provider istanbul --reporter=default --reporter=junit --outputFile=./junit.xml && pnpm test:bun",
 		"lint": "biome lint",
 		"format": "biome format --write",
