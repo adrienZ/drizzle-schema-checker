@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.2.4
+
+[compare changes](https://github.com/adrienZ/drizzle-schema-checker/compare/v1.2.3...v1.2.4)
+
+### 🩹 Fixes
+
+- Update drizzle-orm dependency to version 0.45.2 ([0569cf5](https://github.com/adrienZ/drizzle-schema-checker/commit/0569cf5))
+
+### 🏡 Chore
+
+- **release:** V1.2.3 ([bd84ac8](https://github.com/adrienZ/drizzle-schema-checker/commit/bd84ac8))
+
+### ❤️ Contributors
+
+- Adrien Zaganelli <adrienzaganelli@gmail.com>
+
 ## v1.2.3
 
 [compare changes](https://github.com/adrienZ/drizzle-schema-checker/compare/v1.2.2...v1.2.3)
