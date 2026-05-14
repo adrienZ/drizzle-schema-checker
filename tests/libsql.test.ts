@@ -1,3 +1,6 @@
+import { mkdirSync } from "node:fs";
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import { describe, it, expect, beforeEach } from "vitest";
 import libSql from "db0/connectors/libsql/node";
 import { createDatabase } from "db0";
@@ -12,9 +15,15 @@ function testFunction() {
 	return createChecker(db, "libsql");
 }
 
+const testDatabasePath = fileURLToPath(
+	new URL("../.data/libsql.test.db", import.meta.url),
+);
+
+mkdirSync(dirname(testDatabasePath), { recursive: true });
+
 const db = createDatabase(
 	libSql({
-		url: "file:.data/libsql.test.db",
+		url: `file:${testDatabasePath}`,
 	}),
 );
 
