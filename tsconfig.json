@@ -22,5 +22,6 @@
 		"noEmit": true,
 		"lib": ["es2022"]
 	},
-	"exclude": ["tests/**/*.bun.ts"]
+	"include": ["src/**/*.ts", "tests/**/*.ts", "tests/**/*.mts", "vitest.config.ts"],
+	"exclude": ["dist", "coverage", "tests/**/*.bun.ts", "tests/**/node_modules"]
 }
