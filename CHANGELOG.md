@@ -5,6 +5,18 @@
 
 [compare changes](https://github.com/adrienZ/drizzle-schema-checker/compare/v1.2.8...v1.2.5)
 
+### 🏡 Chore
+
+- **release:** V1.2.5 ([4a5e2a4](https://github.com/adrienZ/drizzle-schema-checker/commit/4a5e2a4))
+
+### ❤️ Contributors
+
+- Adrien Zaganelli <adrienzaganelli@gmail.com>
+
+## v1.2.5
+
+[compare changes](https://github.com/adrienZ/drizzle-schema-checker/compare/v1.2.8...v1.2.5)
+
 ## v1.2.8
 
 [compare changes](https://github.com/adrienZ/drizzle-schema-checker/compare/v1.2.5...v1.2.8)
