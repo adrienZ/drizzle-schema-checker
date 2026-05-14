@@ -17,4 +17,4 @@ export default {
 		console.log(env);
 		return new Response("Hello World!");
 	},
-}
+};

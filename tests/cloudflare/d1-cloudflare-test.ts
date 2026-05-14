@@ -10,7 +10,6 @@ import {
 // @ts-expect-error missing types
 import { env as cloudflareEnv } from "cloudflare:test";
 
-
 // @ts-expect-error TODO: fix it
 if (!globalThis.__env__) {
 	// @ts-expect-error TODO: fix it
@@ -39,7 +38,6 @@ beforeEach(async () => {
 	await db.sql`DROP TABLE IF EXISTS slip_oauth_accounts`;
 	await db.sql`DROP TABLE IF EXISTS slip_users`;
 });
-
 
 describe("D1 connector", () => {
 	describe("users table", () => {

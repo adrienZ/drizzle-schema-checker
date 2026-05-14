@@ -60,8 +60,8 @@ const findColumnInSQLiteTableForeignKeys = <T extends { from: string }>(
 
 // handle cloudflare client
 function unwrapResults<T>(dbResult: T): T {
-	const resultsCasted = dbResult as { results?: unknown}
-	return resultsCasted.results ? resultsCasted.results as T : dbResult;
+	const resultsCasted = dbResult as { results?: unknown };
+	return resultsCasted.results ? (resultsCasted.results as T) : dbResult;
 }
 
 async function validateDabaseWithSchema(
@@ -80,13 +80,14 @@ async function validateDabaseWithSchema(
 		success,
 		error,
 		data: tableInfo,
-	} = createSQLiteTableExistSchema(tableName).safeParse(unwrapResults(maybeTableInfo));
-	
+	} = createSQLiteTableExistSchema(tableName).safeParse(
+		unwrapResults(maybeTableInfo),
+	);
 
 	if (!success) {
 		throw new Error(error.errors[0]?.message);
 	}
-	
+
 	// Check if all columns from schema exist in SQLite table
 	for (const columnFromSchema of drizzleTableInfos.columns) {
 		const correspondingColumn = findColumnInSQLiteTableInfo(
@@ -120,21 +121,25 @@ async function validateDabaseWithSchema(
 			return `${tableName} table must contain a column "${columnFromSchema.name}" not nullable`;
 		}
 
-		const indexesInTableSQLite = await db.prepare(`SELECT name FROM sqlite_master WHERE type = 'index' AND tbl_name = '${tableName}';`).all() as Array<{ name: string }>;
+		const indexesInTableSQLite = (await db
+			.prepare(
+				`SELECT name FROM sqlite_master WHERE type = 'index' AND tbl_name = '${tableName}';`,
+			)
+			.all()) as Array<{ name: string }>;
 
 		const uniqueIndexesSQLite = await Promise.all(
-			unwrapResults(indexesInTableSQLite)
-				.map((uniqueIndex) => {
-					return db
-						.prepare(`PRAGMA index_info(${uniqueIndex.name})`)
-						.all() as Promise<Array<{ name: string }>>;
-				}),
+			unwrapResults(indexesInTableSQLite).map((uniqueIndex) => {
+				return db
+					.prepare(`PRAGMA index_info(${uniqueIndex.name})`)
+					.all() as Promise<Array<{ name: string }>>;
+			}),
 		);
 
 		if (
 			columnFromSchema.isUnique &&
 			unwrapResults(uniqueIndexesSQLite).find(
-				(uniqueIndex) => columnFromSchema.name === unwrapResults(uniqueIndex).at(0)?.name,
+				(uniqueIndex) =>
+					columnFromSchema.name === unwrapResults(uniqueIndex).at(0)?.name,
 			) === undefined
 		) {
 			return `${tableName} table must contain a column "${columnFromSchema.name}" unique`;

@@ -2,14 +2,17 @@ import { describe, it, expect, beforeEach } from "bun:test";
 import bunSqlite from "db0/connectors/bun-sqlite";
 import { createDatabase } from "db0";
 import { createChecker } from "../src/index";
-import { oauthAccountsSchema, sessionsSchema, usersSchema } from "./test-schemas";
+import {
+	oauthAccountsSchema,
+	sessionsSchema,
+	usersSchema,
+} from "./test-schemas";
 
 function testFunction() {
 	return createChecker(db, "bun-sqlite");
 }
 
-const db = createDatabase(bunSqlite({
-}));
+const db = createDatabase(bunSqlite({}));
 
 beforeEach(async () => {
 	await db.sql`DROP TABLE IF EXISTS slip_users`;

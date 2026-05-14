@@ -4,7 +4,7 @@
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"target": "es2022",
-		"allowJs": true,
+		"allowJs": false,
 		"resolveJsonModule": true,
 		"moduleDetection": "force",
 		"isolatedModules": true,
@@ -20,9 +20,7 @@
 		/* If NOT transpiling with TypeScript: */
 		"module": "preserve",
 		"noEmit": true,
-		"lib": [
-			"es2022"
-		]
+		"lib": ["es2022"]
 	},
 	"exclude": ["tests/**/*.bun.ts"]
 }

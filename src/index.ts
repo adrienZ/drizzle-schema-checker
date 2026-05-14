@@ -7,7 +7,13 @@ import { D1SqliteTableChecker } from "./lib/d1-sqlite-table-checker";
 
 export type supportedConnectors = Extract<
 	ConnectorName,
-	"sqlite" | "libsql" | "bun-sqlite" | "cloudflare-d1" | "better-sqlite3" | "node-sqlite" | "sqlite3"
+	| "sqlite"
+	| "libsql"
+	| "bun-sqlite"
+	| "cloudflare-d1"
+	| "better-sqlite3"
+	| "node-sqlite"
+	| "sqlite3"
 >;
 const CONNECTOR_NAME = [
 	"sqlite",
@@ -16,7 +22,7 @@ const CONNECTOR_NAME = [
 	"cloudflare-d1",
 	"node-sqlite",
 	"sqlite3",
-	"better-sqlite3"
+	"better-sqlite3",
 ] as const satisfies supportedConnectors[];
 
 const DatabaseSchema = z.object({
@@ -54,14 +60,14 @@ export function createChecker(
 	}
 
 	let tableChecker: SqliteTableChecker;
-	
-	switch(connectorType) {
+
+	switch (connectorType) {
 		case "cloudflare-d1":
 			tableChecker = new D1SqliteTableChecker(database);
 			break;
 		default:
 			tableChecker = new SqliteTableChecker(database);
-			break
+			break;
 	}
 
 	const checkTableWithSchema = async (tableName: string, schema: unknown) => {
