@@ -23,5 +23,6 @@
 		"lib": [
 			"es2022"
 		]
-	}
+	},
+	"exclude": ["tests/**/*.bun.ts"]
 }
