@@ -52,7 +52,7 @@
 		"better-sqlite3": "^11.9.1",
 		"changelogen": "^0.6.1",
 		"consola": "^3.4.2",
-		"drizzle-orm": "^0.41.0",
+		"drizzle-orm": "^0.45.2",
 		"zod": "^3.24.2"
 	},
 	"packageManager": "pnpm@9.10.0",
