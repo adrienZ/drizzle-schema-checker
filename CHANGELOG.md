@@ -1,6 +1,10 @@
 # Changelog
 
 
+## v1.2.8
+
+[compare changes](https://github.com/adrienZ/drizzle-schema-checker/compare/v1.2.5...v1.2.8)
+
 ## v1.2.5
 
 [compare changes](https://github.com/adrienZ/drizzle-schema-checker/compare/v1.2.4...v1.2.5)
